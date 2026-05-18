@@ -1,0 +1,38 @@
+---
+title: All Entries
+layout: base.njk
+---
+
+<h1>Hot or Not — All Entries</h1>
+
+<table id="entries-table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Year</th>
+      <th>Score</th>
+      <th>Year Rank</th>
+      <th>All Time Rank</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for item in entries %}
+    <tr>
+      <td><a href="{{ item.url }}">{{ item.item }}</a></td>
+      <td>{{ item.year }}</td>
+      <td>{{ item.score }}</td>
+      <td>{{ item.rank_year }}</td>
+      <td>{{ item.rank_alltime }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+<script>
+  $(document).ready(function() {
+    new DataTable('#entries-table', {
+      pageLength: 50,
+      order: [[2, 'desc']]
+    });
+  });
+</script>

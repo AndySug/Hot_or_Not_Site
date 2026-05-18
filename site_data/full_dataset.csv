@@ -1,4 +1,4 @@
-Name,Score,Rank (year),Rank (all time),Year,Same Thing?,Gender,living_human,matching_name,year_int,data,slug,url,loc,dist,list_loc,site_loc
+item,score,rank_year,rank_alltime,year,tag,gender,living_human,matching_name,year_int,data,slug,url,loc,dist,list_loc,site_loc
 24 hour Costcutter (Stockwell Station),8.22,15,90,2020,NA,NA,No,24 hour Costcutter (Stockwell Station),1,,24-hour-costcutter-stockwell-station,/2020/24-hour-costcutter-stockwell-station,2020/24 hour Costcutter (Stockwell Station).png,9,./raw_image/2020/24 hour Costcutter (Stockwell Station).png,./raw_image/2020/24 hour Costcutter (Stockwell Station).png
 26 degrees celsius,7.89,34,170,2020,NA,NA,No,26 degrees celsius,1,,26-degrees-celsius,/2020/26-degrees-celsius,2020/26 degrees celsius.jpg,9,./raw_image/2020/26 degrees celsius.jpg,./raw_image/2020/26 degrees celsius.jpg
 3OH!3 as an entity,5.67,173,1181,2020,NA,M,Yes,3OH!3 as an entity,1,,3oh3-as-an-entity,/2020/3oh3-as-an-entity,2020/3OH! as an entity.jpg,10,./raw_image/2020/3OH! as an entity.jpg,./raw_image/2020/3OH! as an entity.jpg

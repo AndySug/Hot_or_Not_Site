@@ -1,2 +1,4 @@
 raw_data/*
 .Rhistory
+node_modules/
+_site/

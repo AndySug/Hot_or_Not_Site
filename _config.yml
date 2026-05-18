@@ -1,0 +1,7 @@
+# Site settings
+title: Hot or Not
+email: 
+description: > # this means to ignore newlines until "baseurl:"
+  From the makers of Hot or Not comes an excellent website, containing all related Hot or Not content. Please feel free to let us know your feelings about Hot or Not.
+baseurl: "/example" # the subpath of your site, e.g. /blog/
+url: "http://jekyll.github.io" # the base hostname & protocol for your site

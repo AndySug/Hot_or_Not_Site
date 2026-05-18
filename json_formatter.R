@@ -133,6 +133,15 @@ overall_w_image <- scores_and_overall %>%
   inner_join(correct_combo,by=c("Name","Year")) %>%
   select(-5,-8,-10,-12)
 
+overall_named <- overall_w_image %>%
+  rename(item = Name,
+         score = Score,
+         rank_year = `Rank (year)`,
+         rank_alltime = `Rank (all time)`,
+         year = Year,
+         tag = `Same Thing?`,
+         gender = Gender)
+
 write_csv(overall_w_image,'./site_data/full_dataset.csv')
 
 json <- toJSON(overall_w_image)

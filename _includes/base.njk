@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ title }} | Hot or Not</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/2.3.8/css/dataTables.dataTables.css" />
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="https://cdn.datatables.net/2.3.8/js/dataTables.js"></script>
+</head>
+<body>
+  <header>
+    <a href="/">Hot or Not</a>
+  </header>
+
+  <div class="page-wrapper">
+    <aside class="sidebar">
+      <p>Provisional sidebar</p>
+    </aside>
+
+  <main>
+    {{ content | safe }}
+  </main>
+
+
+</body>
+</html>
