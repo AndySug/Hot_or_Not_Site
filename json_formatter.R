@@ -5,22 +5,25 @@ font_add_google("Nunito Sans","nunito")
 
 data_26 <- read_csv('raw_data/data26.csv') %>%
   rename(item = name) %>%
-  mutate(year = 2026, year_int = 7) %>%
-  pivot_longer(4:150) %>%
   filter(item != 'weight' & item != 'referrer' & item != 'Hand' & item != 'Gender') %>%
-  select(1,4,5,6,7)
+  mutate(year = 2026, year_int = 7, item_id = row_number() + 1803) %>%
+  pivot_longer(4:150) %>%
+  select(1,4,5,6,7,8)
 
 data_25 <- read_csv('raw_data/data25.csv') %>% 
-  mutate(year = 2025, year_int = 6) %>%
-  pivot_longer(2:65) %>%
-  filter(item != 'weight')
+  arrange(item) %>%
+  filter(item != 'weight') %>%
+  mutate(year = 2025, year_int = 6, item_id = row_number() + 1503) %>%
+  pivot_longer(2:65)
 
 data_24 <- read_csv('raw_data/data24.csv') %>% 
-  mutate(year = 2024, year_int = 5) %>%
+  arrange(item) %>%
+  mutate(year = 2024, year_int = 5, item_id = row_number() + 1202) %>%
   pivot_longer(2:65)
 
 data_23 <- read_csv('raw_data/data23.csv')  %>% 
-  mutate(year = 2023, year_int = 4) %>%
+  arrange(`What's your name?`) %>%
+  mutate(year = 2023, year_int = 4, item_id = row_number() + 902) %>%
   pivot_longer(2:23) %>%
   rename('item' = "What's your name?")
 
@@ -28,23 +31,27 @@ data_22 <- read_csv('raw_data/data22.csv',
                     col_names = c('item','Andy','Caitlin','Kit','Danny','Josie','Scotch','Sophie','Will','Sarah'),
                     col_types = 'ciiiiiiiii',
                     skip = 1)  %>% 
-  mutate(year = 2022, year_int = 3) %>%
-  na.omit() %>%
+  arrange(item) %>%
+  filter(!is.na(item)) %>%
+  mutate(year = 2022, year_int = 3, item_id = row_number() + 600) %>%
   pivot_longer(2:10)
 
 data_21 <- read_csv('raw_data/data21.csv',
                     col_names = c('item','Andy','Caitlin','Kit','Danny','Josie','Sara','Scotch','Sophie','Will'),
                     col_types = 'ciiiiiiiii',
                     skip = 1)  %>% 
-  mutate(year = 2021, year_int = 2) %>%
+  arrange(item) %>%
+  mutate(year = 2021, year_int = 2, item_id = row_number() + 300) %>%
   pivot_longer(2:10)
 
 data_20 <- read_csv('raw_data/data20.csv',
                     col_names = c('item','Kit','Andy','Caitlin','Sophie','Josie','Danny','Scotch','Sarah','Will'),
                     col_types = 'ciiiiiiiii',
-                    skip = 1)  %>% 
-  mutate(year = 2020, year_int = 1) %>%
+                    skip = 1)  %>%
+  arrange(item) %>%
+  mutate(year = 2020, year_int = 1, item_id = row_number()) %>%
   pivot_longer(2:10)
+
 
 #Vote data final table
 data_all_years <- data_26 %>%
@@ -63,17 +70,17 @@ simplified_all_time <-
                                   TRUE ~ "No"))
 
 data_summ <- data_all_years %>%
-  group_by(item, year, year_int, simplified_score) %>%
+  group_by(item, item_id, year, year_int, simplified_score) %>%
   summarise(count = n())
 
 score_hist <- data_summ %>% 
-  pivot_wider(id_cols = c('item','year','year_int'),
+  pivot_wider(id_cols = c('item','item_id','year','year_int'),
               names_from = simplified_score,
               values_from = count,
               values_fill = 0)
 
 score_nest <- score_hist %>%
-  nest(4:14)
+  nest(data = 5:15)
 
 #Matching to images
 all_img <- list.files('C:/Users/AndyS/Documents/Hot or Not/hot_or_not_website/raw_image/',recursive=TRUE)
@@ -130,21 +137,30 @@ scores_and_overall <- simplified_all_time %>%
   left_join(nest_and_slug,by=c("matching_name"="item","Year"="year"))
 
 overall_w_image <- scores_and_overall %>%
-  inner_join(correct_combo,by=c("Name","Year")) %>%
-  select(-5,-8,-10,-12)
+  inner_join(correct_combo,by=c("Name","Year"))
 
 overall_named <- overall_w_image %>%
   rename(item = Name,
          score = Score,
-         rank_year = `Rank (year)`,
-         rank_alltime = `Rank (all time)`,
+         rank_year_original = `Rank (year)`,
+         rank_alltime_original = `Rank (all time)`,
          year = Year,
          tag = `Same Thing?`,
          gender = Gender)
 
-write_csv(overall_w_image,'./site_data/full_dataset.csv')
+overall_rerank <- overall_named %>%
+  group_by(year) %>%
+  mutate(rank_year = rank(desc(score),na.last = "keep",ties.method = "min")) %>%
+  ungroup() %>%
+  mutate(rank_alltime = rank(desc(score),na.last = "keep",ties.method = "min")) %>%
+  select(-5,-10)
 
-json <- toJSON(overall_w_image)
+write_csv(overall_rerank,'./site_data/full_dataset.csv')
+
+json_formatting <- overall_rerank %>%
+  mutate(score = format(score,nsmall = 2))
+
+json <- toJSON(json_formatting)
 
 write_file(json,"./site_data/full_dataset.json")
 
