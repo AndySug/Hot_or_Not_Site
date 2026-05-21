@@ -77,7 +77,8 @@ score_hist <- data_summ %>%
   pivot_wider(id_cols = c('item','item_id','year','year_int'),
               names_from = simplified_score,
               values_from = count,
-              values_fill = 0)
+              values_fill = 0) %>%
+  mutate(scores_given = (`1`+`2`+`3`+`4`+`5`+`6`+`7`+`8`+`9`+`10`))
 
 score_nest <- score_hist %>%
   nest(data = 5:15)

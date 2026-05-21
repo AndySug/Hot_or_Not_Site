@@ -8,11 +8,12 @@ layout: base.njk
 <table id="entries-table" class="display">
   <thead>
     <tr>
-      <th>Name</th>
+      <th>Item</th>
       <th>Year</th>
       <th>Score</th>
-      <th>Year Rank</th>
-      <th>All Time Rank</th>
+      <th>Rank in Year</th>
+      <th>Rank All Time</th>
+      <th>Scorers</th>
     </tr>
   </thead>
   <tbody>
@@ -23,6 +24,7 @@ layout: base.njk
       <td>{{ item.score }}</td>
       <td>{{ item.rank_year }}</td>
       <td>{{ item.rank_alltime }}</td>
+      <td>{{ item.scores_given }}</td>
     </tr>
     {% endfor %}
   </tbody>
@@ -31,8 +33,19 @@ layout: base.njk
 <script>
   $(document).ready(function() {
     new DataTable('#entries-table', {
-      pageLength: 50,
-      order: [[2, 'desc']]
+        columns: [
+        { name: 'item' },
+        { name: 'year' },
+        { name: 'score' },
+        { name: 'rank_year' },
+        { name: 'rank_alltime' },
+        { name: 'scorers' }
+        ],
+        order: {
+            name: 'rank_alltime',
+            dir: 'asc'
+        },
+        pageLength: 50,
     });
   });
 </script>
