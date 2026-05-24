@@ -118,7 +118,7 @@ correct_combo <- correct_combo %>%
   filter(Name != 'Gregg Wallace (Hair)') %>%
   filter(Name != 'Leader of the Opposition Keir Starmer') %>%
   filter() %>%
-  mutate(site_loc = paste0('./raw_image/',loc))
+  mutate(site_loc = paste0('/raw_image/',loc))
 
 
 
@@ -140,6 +140,8 @@ scores_and_overall <- simplified_all_time %>%
 overall_w_image <- scores_and_overall %>%
   inner_join(correct_combo,by=c("Name","Year"))
 
+#Missing - Pacha (new groove) & Chicken Doughnut Dippers
+
 overall_named <- overall_w_image %>%
   rename(item = Name,
          score = Score,
@@ -147,7 +149,9 @@ overall_named <- overall_w_image %>%
          rank_alltime_original = `Rank (all time)`,
          year = Year,
          tag = `Same Thing?`,
-         gender = Gender)
+         gender = Gender) %>%
+  filter(item != "Pacha (The Emperor's New Groove)") %>%
+  filter(item != 'Chicken Doughnut Dippers')
 
 overall_rerank <- overall_named %>%
   group_by(year) %>%
@@ -166,7 +170,6 @@ json <- toJSON(json_formatting)
 write_file(json,"./site_data/full_dataset.json")
 
 
-#Missing - Pacha (new groove) & Chicken Doughnut Dippers
 
 
 

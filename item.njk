@@ -1,0 +1,52 @@
+---
+pagination:
+  data: entries
+  size: 1
+  alias: item
+permalink: "{{ item.url }}/index.html"
+layout: base.njk
+eleventyComputed:
+  title: {{ item.item }}
+---
+
+<h1>Hot or Not — {{ item.item }}</h1>
+
+<img src="{{ item.site_loc }}" alt="{{ item.item }}">
+
+<p> {{ item.data[0]["10"] }} </p>
+
+<p> {{ item.url }} </p>
+
+<p> {{ item.item }} </p>
+
+<canvas id="votes-chart"></canvas>
+
+<script>
+  const voteData = {{ item.data[0] | dump | safe }};
+  const votes = [
+    voteData["1"], voteData["2"], voteData["3"], voteData["4"], voteData["5"],
+    voteData["6"], voteData["7"], voteData["8"], voteData["9"], voteData["10"]
+  ];
+
+  new Chart(document.getElementById('votes-chart'), {
+    type: 'bar',
+    data: {
+      labels: ['1','2','3','4','5','6','7','8','9','10'],
+      datasets: [{
+        label: 'Votes',
+        data: votes
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true,
+          ticks: { stepSize: 1 }
+        }
+      },
+      plugins: {
+        legend: { display: false }
+      }
+    }
+  });
+</script>
