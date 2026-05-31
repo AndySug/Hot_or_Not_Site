@@ -18,15 +18,19 @@
 </head>
 <body>
   <header>
-    <a href="/">Hot or Not</a>
+    
   </header>
 
   <div class="page-wrapper">
-    <aside class="sidebar">
-      <p>Provisional sidebar</p>
-    </aside>
+    <div class="sidebar">
+      <p><a href="/">Hot or Not</a></p>
+      <ul>About</ul>
+      <ul>History</ul>
+      <ul><a href="https://andysug.itch.io/hotter-or-notter">The Game</a></ul>
+      <ul><a href="/">Entries</a></ul>
+    </div>
 
-  <main>
+  <main class="main-body">
     {{ content | safe }}
   </main>
 
