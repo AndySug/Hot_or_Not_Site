@@ -29,6 +29,6 @@
   "scripts": {
     "start": "eleventy --serve",
     "build": "eleventy",
-    "deploy": "eleventy && gh-pages -d _site"
+    "deploy": "eleventy && gh-pages -d _site --dotfiles -r git@github.com:AndySug/Hot_or_Not_Site.git"
   }
 }
