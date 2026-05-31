@@ -2,3 +2,4 @@ raw_data/*
 .Rhistory
 node_modules/
 site_data/full_dataset.csv
+_site/*
