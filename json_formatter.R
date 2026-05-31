@@ -125,7 +125,7 @@ correct_combo <- correct_combo %>%
 
 
 nest_and_slug <- score_nest %>%
-  mutate(slug = tolower(gsub('[[:blank:]]+','-',gsub('[[:punct:]]+','',item))),
+  mutate(slug = str_trunc(tolower(gsub('[[:blank:]]+','-',gsub('[[:punct:]]+','',item))),50,ellipsis = ''),
          url = paste0('/',year,'/',slug))
 
 
