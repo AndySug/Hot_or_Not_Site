@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Hot or Not | Wheelies</title>
+
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/2.3.8/css/dataTables.dataTables.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap" rel="stylesheet">
+
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="https://cdn.datatables.net/2.3.8/js/dataTables.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+  <div class="page-wrapper">
+    <div class="sidebar">
+      <p><a href="/index.html">Hot or Not</a></p>
+      <ul>About</ul>
+      <ul>History</ul>
+      <ul><a href="https://andysug.itch.io/hotter-or-notter">The Game</a></ul>
+      <ul><a href="/index.html">Entries</a></ul>
+      <ul><a href="/index.html">Random Item</a></ul>
+    </div>
+
+  <main class="main-body">
+    
+<div class = "main-body">
+<h1>Wheelies</h1>
+
+<img src="/raw_image/2026/Wheelies.jpg" alt="Wheelies">
+
+<h2>Headlines</h2>
+
+<table class="item-table">
+  <tbody>
+    <tr>
+      <td><b>Overall item score:</b></td>
+      <td>4.51</td>
+    </tr>
+    <tr>
+      <td><b>Year ranked:</b></td>
+      <td>2026</td>
+    </tr>
+    <tr>
+      <td><b>Total scores given:</b></td>
+      <td>129</td>
+    </tr>
+    <tr>
+      <td><b>Rank in year:</b></td>
+      <td>253</td>
+    </tr>
+    <tr>
+      <td><b>Rank all time:</b></td>
+      <td>1596</td>
+    </tr>
+  </tbody>
+</table>
+
+
+<h2>Score Distribution</h2>
+
+<canvas id="votes-chart"></canvas>
+
+<p class="note">Note that for display purposes, 0s and 11s have been resolved to 1s and 10s respectively.</p>
+
+</div>
+
+<script>
+  const voteData = {"1":21,"2":21,"3":17,"4":24,"5":6,"6":9,"7":11,"8":11,"9":5,"10":4,"NA":18};
+  const votes = [
+    voteData["1"], voteData["2"], voteData["3"], voteData["4"], voteData["5"],
+    voteData["6"], voteData["7"], voteData["8"], voteData["9"], voteData["10"]
+  ];
+
+  new Chart(document.getElementById('votes-chart'), {
+    type: 'bar',
+    data: {
+      labels: ['1','2','3','4','5','6','7','8','9','10'],
+      datasets: [{
+        label: 'Votes',
+        data: votes,
+        backgroundColor: '#ec008e'
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true,
+          ticks: { stepSize: 1 },
+          display: false
+        }
+      },
+      plugins: {
+        legend: { display: false },
+        tooltip: { enabled: false }
+      }
+    }
+  });
+</script>
+  </main>
+</div>
+
+</body>
+</html>
