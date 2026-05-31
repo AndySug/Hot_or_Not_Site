@@ -3,7 +3,7 @@ pagination:
   data: entries
   size: 1
   alias: item
-permalink: "{{ item.url }}/index.html"
+permalink: "{{ item.url | url }}/index.html"
 layout: base.njk
 eleventyComputed:
   title: "{{ item.item }}"
@@ -12,7 +12,7 @@ eleventyComputed:
 <div class = "main-body">
 <h1>{{ item.item }}</h1>
 
-<img src="{{ item.site_loc }}" alt="{{ item.item }}">
+<img src="{{ item.site_loc | url }}" alt="{{ item.item }}">
 
 <h2>Headlines</h2>
 
@@ -40,7 +40,6 @@ eleventyComputed:
     </tr>
   </tbody>
 </table>
-
 
 <h2>Score Distribution</h2>
 
