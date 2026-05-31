@@ -6,7 +6,7 @@ pagination:
 permalink: "{{ item.url }}/index.html"
 layout: base.njk
 eleventyComputed:
-  title: {{ item.item }}
+  title: "{{ item.item }}"
 ---
 
 <div class = "main-body">
@@ -71,11 +71,13 @@ eleventyComputed:
       scales: {
         y: {
           beginAtZero: true,
-          ticks: { stepSize: 1 }
+          ticks: { stepSize: 1 },
+          display: false
         }
       },
       plugins: {
-        legend: { display: false }
+        legend: { display: false },
+        tooltip: { enabled: false }
       }
     }
   });
