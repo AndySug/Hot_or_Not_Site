@@ -3,3 +3,4 @@ raw_data/*
 node_modules/
 site_data/full_dataset.csv
 _site/*
+*.zip

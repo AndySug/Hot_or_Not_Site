@@ -3,7 +3,6 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.addPassthroughCopy("raw_image");
 
   return {
-    pathPrefix: "/Hot_or_Not_Site/",
     dir: {
       input: ".",
       output: "_site",
