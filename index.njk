@@ -3,9 +3,9 @@ title: All Entries
 layout: base.njk
 ---
 
-<h1>Hot or Not — All Entries</h1>
+<h1>Hot or Not | All Entries</h1>
 
-<table id="entries-table" class="display">
+<table id="entries-table" class="display table">
   <thead>
     <tr>
       <th>Item</th>
@@ -30,6 +30,8 @@ layout: base.njk
   </tbody>
 </table>
 
+<p class="note">In this table, overall scores are rounded to two decimal places, and ties are not broken. In true yearly 'Hot or Not' results, scores are not rounded, and the higher placed item in a tie is decided by more 10s scored, followed by fewer 1s scored.</p>
+
 <script>
   $(document).ready(function() {
     new DataTable('#entries-table', {
@@ -45,7 +47,7 @@ layout: base.njk
             name: 'rank_alltime',
             dir: 'asc'
         },
-        pageLength: 50,
+        pageLength: 50
     });
   });
 </script>
