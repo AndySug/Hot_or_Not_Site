@@ -9,7 +9,7 @@ eleventyComputed:
   title: "{{ item.item }}"
 ---
 
-<div class = "main-body">
+<div class = "item-content">
 <h1>{{ item.item }}</h1>
 
 <img class="item-image" src="{{ item.site_loc }}" alt="{{ item.item }}">
@@ -43,11 +43,13 @@ eleventyComputed:
 
 <h2>Score Distribution</h2>
 
+</div>
+
 <canvas id="votes-chart"></canvas>
 
 <p class="note">Note that for display purposes, 0s and 11s have been resolved to 1s and 10s respectively.</p>
 
-</div>
+
 
 <script>
   const voteData = {{ item.data[0] | dump | safe }};

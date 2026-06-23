@@ -15,6 +15,18 @@
   <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
   <script src="https://cdn.datatables.net/2.3.8/js/dataTables.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <script id="item-list" type="application/json">
+    [
+      {% for item in entries %}"{{ item.url }}"{% if not loop.last %},{% endif %}{% endfor %}
+    ]
+  </script>
+
+  <script>
+    const posts = JSON.parse(document.querySelector("#item-list").textContent);
+    const random = posts[Math.floor(Math.random() * posts.length)];
+  </script>
+
 </head>
 <body>
 
@@ -25,13 +37,18 @@
       <ul>History</ul>
       <ul><a href="https://andysug.itch.io/hotter-or-notter">The Game</a></ul>
       <ul><a href="/index.html">Entries</a></ul>
-      <ul><a href="/index.html">Random Item</a></ul>
+      <ul><a href="" id="random-link">Random Item</a></ul>
     </div>
 
   <main class="main-body">
     {{ content | safe }}
   </main>
 </div>
+
+<script>
+  const randomLink = document.querySelector("#random-link");
+  randomLink.setAttribute("href",random);
+</script>
 
 </body>
 </html>
