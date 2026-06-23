@@ -72,14 +72,20 @@ eleventyComputed:
       scales: {
         y: {
           beginAtZero: true,
-          ticks: { stepSize: 1 },
+          ticks: { stepSize: 1},
           display: false
+        },
+        x: {
+          ticks: {
+            font: {size: 20}
+          }
         }
       },
       plugins: {
         legend: { display: false },
         tooltip: { enabled: false }
-      }
+      },
+      responsive: true
     }
   });
 </script>

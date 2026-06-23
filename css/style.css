@@ -131,7 +131,6 @@ a:visited {
   .item-table {
     width:90%;
     font-size: 18px;
-    table-layout: auto;
   }
 
   h1 {
