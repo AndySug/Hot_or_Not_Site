@@ -34,6 +34,25 @@ a:visited {
   color:#86005f;
 }
 
+ul {
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  padding:0px;
+}
+
+table.dataTable th.dt-type-numeric, table.dataTable th.dt-type-date, table.dataTable td.dt-type-numeric, table.dataTable td.dt-type-date { 
+  text-align: center; 
+}
+
+table.dataTable thead th, table.dataTable thead td, table.dataTable tfoot th, table.dataTable tfoot td{
+  text-align: center;
+}
+
+table.dataTable th div.dt-column-header {
+  flex-direction: row !important;
+}
+
 .page-wrapper {
   display: flex;
   flex-direction: row;
@@ -44,12 +63,12 @@ a:visited {
 
 .sidebar {
   display: flex;
-  justify-content: space-between;
+  align-items: center;
+  justify-content: center;
   flex-direction: column;
   height: 100%;
   width: 10%;
   min-width: 120px;
-  padding: 1%;
   order: 1;
 }
 
@@ -112,12 +131,13 @@ a:visited {
   .sidebar {
     display: flex;
     flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
     order: -1;
     border-right: 0px;
     width: 100%;
     flex: 1 1 auto;
-    align-items: center;
-    justify-content: center;
+    font-size: 12px;
   }
 
   .main-body {
@@ -133,8 +153,14 @@ a:visited {
     font-size: 18px;
   }
 
+  #entries-table {
+    width: 100%;
+    font-size: 10px;
+    text-align: center;
+  }
+
   h1 {
-    font-size: 40px;
+    font-size: 36px;
   }
 
   h2 {
