@@ -65,11 +65,21 @@ simplified_all_time <- read_csv('./raw_data/all_time_26.csv')
 
 simplified_all_time <-
   simplified_all_time %>%
-  mutate(living_human = case_when(grepl('?',`Living Human`,fixed = TRUE) ~ "Debateable",
-                                  grepl('y',`Living Human`,ignore.case = TRUE) ~ "Yes",
-                                  TRUE ~ "No"))
+  mutate(living_human = case_when(grepl('?',`Living Human`,fixed = TRUE) ~ "Debateably Human",
+                                  grepl('y',`Living Human`,ignore.case = TRUE) ~ "Is Human",
+                                  TRUE ~ "Not Human"),
+         gender_full = case_when(Gender == "M" ~ "Male",
+                            Gender == "F" ~ "Female",
+                            TRUE ~ NA),
+         tags = pmap(list(`Same Thing?`, living_human, gender_full), function(same_thing, living_human, gender_full) {
+           c(
+             if (!is.na(same_thing)) trimws(same_thing) else NULL,
+             if (!is.na(living_human)) trimws(living_human) else NULL,
+             if (!is.na(gender_full)) trimws(gender_full) else NULL
+           )
+         }))
 
-data_summ <- data_all_years %>%
+idata_summ <- data_all_years %>%
   group_by(item, item_id, year, year_int, simplified_score) %>%
   summarise(count = n())
 
@@ -119,8 +129,6 @@ correct_combo <- correct_combo %>%
   filter(Name != 'Leader of the Opposition Keir Starmer') %>%
   filter() %>%
   mutate(site_loc = paste0('/raw_image/',loc))
-
-
 
 
 
