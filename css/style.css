@@ -57,7 +57,7 @@ table.dataTable th div.dt-column-header {
   display: flex;
   flex-direction: row;
   width:100%;
-  min-width:400px;
+  min-width:360px;
 
 }
 
@@ -92,10 +92,28 @@ table.dataTable th div.dt-column-header {
   flex-wrap: wrap;
 }
 
+.about-content{
+  display: flex;
+  align-items: center;
+  font-size: 20px;
+  width:calc(90% - 120px);
+  max-width: 1200px;
+  justify-content: center;
+  flex-direction: column;
+  border-left: 0px solid #D7DBDD;
+  flex-wrap: wrap;
+}
+
 .item-image{
   display: flex;
   max-width: 50%;
   min-width: 200px;
+}
+
+.about-image{
+  max-width: 50%;
+  max-height: 120px;
+  align-items: center;
 }
 
 .item-table {
@@ -105,6 +123,25 @@ table.dataTable th div.dt-column-header {
   align-items: center;
   justify-content: center;
   table-layout: fixed;
+}
+
+.about-table {
+  width:90%;
+  max-width: 1200px;
+  font-size: 20px;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  table-layout: fixed;
+  border-spacing: 0;
+}
+
+.about-table td {
+  align: center;
+  justify-content: center;
+  border-top: 1px solid #ec008e;
+  padding-top: 10px;
+  padding-bottom: 3px;
 }
 
 .chart {
@@ -165,6 +202,11 @@ table.dataTable th div.dt-column-header {
 
   h2 {
     font-size: 28px;
+  }
+
+  body {
+    margin-left: 0px;
+    margin-right: 0px;
   }
 
 }
