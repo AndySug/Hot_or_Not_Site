@@ -19,6 +19,7 @@ h1 {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  font-family: "Unbounded", "Nunito Sans", sans-serifd;
 }
 
 h2 {
