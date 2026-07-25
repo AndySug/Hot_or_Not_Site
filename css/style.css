@@ -9,6 +9,9 @@ body {
   font-variation-settings:
     "wdth" 100,
     "YTLC" 500;
+  margin-left: 0px;
+  margin-right: 0px;
+  margin-top: 0px;
 }
 
 h1 {
@@ -64,14 +67,34 @@ table.dataTable th div.dt-column-header {
 
 .sidebar {
   display: flex;
-  align-items: center;
-  justify-content: center;
+  align-items: left;
+  padding-left: 1%;
+  /*justify-content: center;*/
   flex-direction: column;
-  height: 100%;
+  /*height: 100%;*/
   width: 10%;
   min-width: 120px;
   order: 1;
+  text-align: left;
+  background-color: #ec008e;
 }
+
+.sidebar a:link {
+  color:#ffffff;
+}
+
+.sidebar a:visited {
+  color:#ffffff;
+}
+
+.sidebar ul {
+  display:flex;
+  align-items: left;
+  justify-content: left;
+  padding:2%;
+  text-align: left;
+}
+
 
 .main-body{
   display: flex;
@@ -159,6 +182,11 @@ table.dataTable th div.dt-column-header {
   max-width: 1600px;
 }
 
+.dt-input {
+  font-family: "Nunito Sans", sans-serif;
+}
+
+
 .aspect-ratio {
   position: relative;
   width: 100%;
@@ -190,7 +218,16 @@ table.dataTable th div.dt-column-header {
     border-right: 0px;
     width: 100%;
     flex: 1 1 auto;
-    font-size: 12px;
+    font-size: 13px;
+    padding: 0%;
+  }
+
+  .sidebar ul {
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    padding:0%;
+    text-align: center;
   }
 
   .main-body {
@@ -207,9 +244,23 @@ table.dataTable th div.dt-column-header {
   }
 
   #entries-table {
-    width: 100%;
-    font-size: 10px;
+    font-size: 13px;
     text-align: center;
+    --dt-order-arrow-width: 0px;
+  }
+
+  .dt-layout-start {
+    font-size: 13px;
+  }
+
+  .dt-layout-end {
+    font-size: 13px;
+  }
+
+  .dt-input {
+    font-size: 13px;
+    font-family: "Nunito Sans", sans-serif;
+    --dt-input_padding: 4px 2px;
   }
 
   h1 {

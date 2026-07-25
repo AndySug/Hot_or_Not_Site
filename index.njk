@@ -35,13 +35,16 @@ layout: base.njk
 <script>
   $(document).ready(function() {
     new DataTable('#entries-table', {
+        responsive: { 
+          details: false
+        },
         columns: [
-        { name: 'item' },
-        { name: 'year' },
-        { name: 'score' },
-        { name: 'rank_year' },
-        { name: 'rank_alltime' },
-        { name: 'scorers' }
+        { name: 'item', responsivePriority: 1 },
+        { name: 'year', responsivePriority: 1 },
+        { name: 'score', responsivePriority: 1 },
+        { name: 'rank_year', responsivePriority: 1 },
+        { name: 'rank_alltime', responsivePriority: 1 },
+        { name: 'scorers', responsivePriority: 10 }
         ],
         order: {
             name: 'rank_alltime',
