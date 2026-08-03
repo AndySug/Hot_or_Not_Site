@@ -79,7 +79,7 @@ simplified_all_time <-
            )
          }))
 
-idata_summ <- data_all_years %>%
+data_summ <- data_all_years %>%
   group_by(item, item_id, year, year_int, simplified_score) %>%
   summarise(count = n())
 
@@ -118,9 +118,13 @@ loc_changes <- read_csv('./raw_data/loc_changes.csv') %>%
          dist = NA,
          list_loc = paste0('./raw_image/',loc))
 
+exclusions <- read_csv('./raw_data/exclusions.csv')
+
 correct_combo <- top_combo %>%
   anti_join(loc_changes,by=c('Name', 'Year')) %>%
-  rbind(loc_changes)
+  anti_join(exclusions,by=c('Name'='item')) %>%
+  rbind(loc_changes) %>%
+  mutate(site_loc = paste0('/raw_image/',loc))
 
 correct_combo <- correct_combo %>% 
   filter(Name != 'Josh Gill (transparent PNG).png') %>%
